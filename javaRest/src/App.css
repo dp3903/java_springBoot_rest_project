@@ -1,0 +1,13 @@
+.container{
+  width:60%;
+  margin-top: 40px;
+  margin-bottom: 100px;
+}
+
+.header{
+  text-align: center;
+}
+
+.btn{
+  margin-right: 20px;
+}

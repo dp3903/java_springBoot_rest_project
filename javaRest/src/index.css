@@ -1,0 +1,10 @@
+.nav{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid grey;
+}
+.nav-link{
+    color: black;
+    text-decoration: underline;
+}
