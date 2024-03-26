@@ -3,6 +3,19 @@ import React,{useState} from 'react'
 export default function PublicDiaries(props) {
     const [status,setStatus] = useState(400);
     const [result,setResult] = useState([]);
+    const [searchItem, setSearchItem] = useState('')
+    const [filteredUsers, setFilteredUsers] = useState([])
+
+    const handleInputChange = (e) => { 
+        const searchTerm = e.target.value;
+        setSearchItem(searchTerm)
+
+        const filteredItems = result.filter((item) =>
+            item.owner.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+
+        setFilteredUsers(filteredItems);
+    }
 
     function getpublicdiaries(event){
         event.preventDefault();
@@ -24,6 +37,7 @@ export default function PublicDiaries(props) {
         .then(response => {
             console.log(response);
             setResult(response);
+            setFilteredUsers(response);
         })
         .catch(err => {
             setStatus(400);
@@ -35,7 +49,14 @@ export default function PublicDiaries(props) {
     <div>
         <h1>Get all Public diaries of all users till now.</h1>
         <button onClick={getpublicdiaries} className='btn btn-primary'>Click to get all Public diaries</button>
-        {result.map(element => {
+        <input
+            type="text"
+            className='form-control my-2'
+            value={searchItem}
+            onChange={handleInputChange}
+            placeholder='Type to filter publisher.'
+        />
+        {filteredUsers.map(element => {
             console.log(element.date);
             return <div>
                 <hr></hr>
